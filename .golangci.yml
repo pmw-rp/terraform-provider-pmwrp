@@ -4,6 +4,8 @@ issues:
   max-per-linter: 0
   max-same-issues: 0
 
+skip-pkg-cache: true
+
 linters:
   disable-all: true
   enable:
