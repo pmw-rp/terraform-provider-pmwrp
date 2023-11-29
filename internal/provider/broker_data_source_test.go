@@ -1,7 +1,7 @@
 package provider
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"testing"
 )
 
@@ -27,7 +27,5 @@ provider "pmwrp" {
   password = "your-password-here"
 }
 
-data "pmwrp_brokers" "default" {
-  id = "foo"
-}
+data "pmwrp_brokers" "default" {}
 `
