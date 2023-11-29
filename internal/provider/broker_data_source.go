@@ -25,6 +25,7 @@ type BrokerDataSource struct {
 
 // BrokerDataSourceModel describes the data source data model.
 type BrokerDataSourceModel struct {
+	ID      types.String               `tfsdk:"id"`
 	Brokers map[string]BrokerDataModel `tfsdk:"brokers"`
 }
 
@@ -45,6 +46,10 @@ func (d *BrokerDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 		// This description is used by the documentation generator and the language server.
 		MarkdownDescription: "Brokers data source",
 		Attributes: map[string]schema.Attribute{
+			"id": schema.StringAttribute{
+				MarkdownDescription: "id",
+				Required:            true,
+			},
 			"brokers": schema.MapNestedAttribute{
 				Computed: true,
 				NestedObject: schema.NestedAttributeObject{
@@ -115,6 +120,7 @@ func (d *BrokerDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 				RackID: types.StringValue(*broker.Rack),
 			}
 		}
+		data.ID = types.StringValue("foo")
 		data.Brokers = brokers
 	}
 
